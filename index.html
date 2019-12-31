@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-Bx4pytHkyTDy3aJKjGkGoHPt3tvv6zlwwjc3iqN7ktaiEMLDPqLSZYts2OjKcBx1"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="style/main.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="scripts/main.js"></script>
+
+    <title></title>
+
+    <script>
+      $(document).ready(function() {
+        // $(document).scroll(function() {
+        //   if ($(document).scrollTop() > 700) {
+        //     $("#fixedNav").addClass("showFixedNav");
+        //   } else {
+        //     $("#fixedNav").removeClass("showFixedNav");
+        //   }
+        // });
+
+        mapboxgl.accessToken =
+          "pk.eyJ1IjoiZGVtYXJjdXNrZW5uZWR5IiwiYSI6ImNqbjF0dDF0YTBmdzUzcW5kcnhwMnp2YzkifQ.KWvhNNyusLRVrH9Wn3oL7A";
+        var map = new mapboxgl.Map({
+          container: "map", // container id
+          style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+          center: [-0.118092, 51.509865], // starting position [lng, lat]
+          zoom: 7 // starting zoom
+        });
+
+        $(".fixedFilter").click(function() {
+          $(this).toggleClass("fixedFilterSelected");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid" id="headerContainer">
+      <div class="row" id="absoluteNav">
+        <div class="absoluteNavBtns">
+          <p class="absoluteNavBtn">About</p>
+          <p class="absoluteNavBtn">Contact Us</p>
+        </div>
+      </div>
+      <div class="row" id="fixedNav">
+        <div id="fixedNavInputLevel">
+          <div id="companyLogoContainer">
+            <h1 id="companyLogo"></h1>
+          </div>
+          <div id="fixedSearchContainer" class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              id="fixedSearch"
+              placeholder="Austin, Texas"
+            />
+            <span class="input-group-addon" data-bind="click:dateFocus"
+              ><span class="glyphicon glyphicon-search"></span
+            ></span>
+          </div>
+        </div>
+        <div id="fixedNavFilterLevel">
+          <div id="fixedFilterContainer">
+            <div class="fixedFilter">
+              <span class="filterName">Language</span>
+            </div>
+            <div class="fixedFilter">
+              <span class="filterName">Activities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="headerImgContainer" class="row">
+        <div id="mainSearchMessageContainer">
+          <h2>
+            Make your trip an Experiance. Find PinPals across the Globe.
+          </h2>
+          <p id="signUp">Sign Up</p>
+          <div class="form-group">
+            <label class="control-label" for="">Country / City / State</label>
+            <input class="form-control" placeholder="Austin, Texas" />
+          </div>
+          <div class="half-from-group">
+            <div class="form-group half">
+              <label class="control-label" for="">From</label>
+              <input class="form-control" type="date" />
+            </div>
+            <div class="form-group half">
+              <label class="control-label" for="">To</label>
+              <input class="form-control" type="date" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for=""
+              >What type of PinPal are you searching for ?
+              <a href="">help</a></label
+            >
+            <select class="form-control" name="" id="">
+              <option value="" selected disabled>Anything!</option>
+              <option value="">Outdoorsy</option>
+              <option value="">Foody</option>
+              <option value="">Historian</option>
+              <option value="">Site Seeing</option>
+              <option value="">Shop Till You Drop</option>
+              <option value="">House Hunting</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button style="width:45%" class="btn btn-danger pull-right">
+              Search
+            </button>
+          </div>
+        </div>
+        <div id="mainBtnContainer">
+          <button class="btn btn-default" id="mainBtn">Explore</button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="aboutContainer">
+      <div class="row aboutSection">
+        <div class="col-md-6" id="mapContainer">
+          <div class="sectionSquare">
+            <div id="map"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="sectionSquare" id="aboutSectionText1">
+            <div class="aboutSectionTextContainer">
+              <h1 class="aboutSectionTitle">
+                Find PinPals across the Globe.
+              </h1>
+              <p class="aboutSectionP">
+                From site seeing in Milan, to navigating through concrete jungle
+                of NYC, make your trip an Experiance.<br /><br />Connect with
+                our tour guides from all over the wolrd, each providing a unque
+                adventure on your vacation.
+              </p>
+              <!-- <div class="btnContainerR">
+                  <button class="about-btn btn btn-default">Learn more</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row aboutSection">
+        <div class="col-md-6">
+          <div class="sectionSquare" id="aboutSectionText2">
+            <div class="aboutSectionTextContainer">
+              <h1 class="aboutSectionTitle">
+                You run the show.
+              </h1>
+              <p class="aboutSectionP">
+                Choose from over 100 diffrent activity categories. Mix, match or
+                cancel as you please.<br /><br />
+                Think of your pinPal as a bestfriend who provides you with
+                endless plans and does whatever you want,
+                <i> for a slight fee</i>.
+              </p>
+              <!-- <div class="btnContainerR">
+                      <button class="about-btn btn btn-default">Learn more</button>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="sectionSquare">
+            <div
+              id="carouselExampleControls"
+              class="carousel slide"
+              data-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    class="d-block w-100"
+                    src="./images/friends2.jpg"
+                    alt="First slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block w-100"
+                    src="./images/hikers.png"
+                    alt="First slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block w-100"
+                    src="./images/fest.jpg"
+                    alt="First slide"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    class="d-block w-100"
+                    src="./images/friends1.jpeg"
+                    alt="First slide"
+                  />
+                </div>
+              </div>
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleControls"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleControls"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="featuredContainerFluid">
+      <div class="row">
+        <div class="col-md-12 sectionTitle">
+          <h2 id="featuredTitle">Featured Accounts</h2>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-md-12 featuredRow">
+          <div class="featuredContainer">
+            <div class="featuredContainerImage">
+              <img class="featuredImg" src="./images/friends1.jpeg" />
+            </div>
+            <div class="featuredContainerFavorites">
+              <p class="favorite">Hiking</p>
+              <p class="favorite">Shopping</p>
+              <p class="favorite">Concerts</p>
+            </div>
+            <div class="featuredContainerText">
+              <p>
+                Hello! My name is person and I love to hike! I'm active daily,
+                itching to get out into the wild!
+              </p>
+            </div>
+            <div class="featuredContainerSocials">
+              <span class="socialIcon fab fa-facebook-square"></span>
+            </div>
+          </div>
+
+          <div class="featuredContainer">
+            <div class="featuredContainerImage">
+              <img class="featuredImg" src="./images/friends1.jpeg" />
+            </div>
+            <div class="featuredContainerFavorites">
+              <p class="favorite">Shopping</p>
+            </div>
+            <div class="featuredContainerText">
+              <p>
+                Hello! My name is person and I love to hike! I'm active daily,
+                itching to get out into the wild!
+              </p>
+            </div>
+            <div class="featuredContainerSocials">
+              <span class="socialIcon fab fa-facebook-square"></span>
+            </div>
+          </div>
+
+          <div class="featuredContainer">
+            <div class="featuredContainerImage">
+              <img class="featuredImg" src="./images/friends1.jpeg" />
+            </div>
+            <div class="featuredContainerFavorites">
+              <p class="favorite">Hiking</p>
+              <p class="favorite">Concerts</p>
+            </div>
+            <div class="featuredContainerText">
+              <p>
+                Hello! My name is person and I love to hike! I'm active daily,
+                itching to get out into the wild!
+              </p>
+            </div>
+            <div class="featuredContainerSocials">
+              <span class="socialIcon fab fa-facebook-square"></span>
+            </div>
+          </div>
+
+          <div class="featuredContainer">
+            <div class="featuredContainerImage">
+              <img class="featuredImg" src="./images/friends1.jpeg" />
+            </div>
+            <div class="featuredContainerFavorites">
+              <p class="favorite">Hiking</p>
+              <p class="favorite">Concerts</p>
+            </div>
+            <div class="featuredContainerText">
+              <p>
+                Hello! My name is person and I love to hike! I'm active daily,
+                itching to get out into the wild!
+              </p>
+            </div>
+            <div class="featuredContainerSocials">
+              <span class="socialIcon fab fa-facebook-square"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="link-btn btn btn-link">
+            More ...
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="featuredContainerFluid">
+      <div class="row">
+        <div class="col-md-12 sectionTitle">
+          <h2 id="featuredTitle">Activities</h2>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-md-12 activityRow">
+          <div class="activityContainer">
+            <div class="featuredContainerImage">
+              <img class="activityImg" src="./images/friends1.jpeg" />
+            </div>
+            <div class="activitiesContainerText">
+              <p>National Parks</p>
+            </div>
+          </div>
+          <div class="activityContainer">
+            <div class="featuredContainerImage">
+              <img class="activityImg" src="./images/fest.jpg" />
+            </div>
+            <div class="activitiesContainerText">
+              <p>Concerts</p>
+            </div>
+          </div>
+          <div class="activityContainer">
+            <div class="featuredContainerImage">
+              <img class="activityImg" src="./images/hikers.png" />
+            </div>
+            <div class="activitiesContainerText">
+              <p>Hiking</p>
+            </div>
+          </div>
+          <div class="activityContainer">
+            <div class="featuredContainerImage">
+              <img class="activityImg" src="./images/friends1.jpeg" />
+            </div>
+            <div class="activitiesContainerText">
+              <p>National Parks</p>
+            </div>
+          </div>
+          <div class="activityContainer">
+            <div class="featuredContainerImage">
+              <img class="activityImg" src="./images/fest.jpg" />
+            </div>
+            <div class="activitiesContainerText">
+              <p>Concerts</p>
+            </div>
+          </div>
+          <div class="activityContainer">
+            <div class="featuredContainerImage">
+              <img class="activityImg" src="./images/hikers.png" />
+            </div>
+            <div class="activitiesContainerText">
+              <p>Hiking</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="link-btn btn btn-link">
+            More ...
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid" id="aboutContainer2">
+        <div class="row aboutSection">
+            <div class="col-md-12">
+              <div class="sectionSquareFull" id="aboutSection2Text2">
+                <div class="aboutSectionTextContainer">
+                  <h1 class="aboutSectionTitle">
+                    You run the show.
+                  </h1>
+                  <p class="aboutSectionP">
+                    Choose from over 100 diffrent activity categories. Mix, match or
+                    cancel as you please.<br /><br />
+                    Think of your pinPal as a bestfriend who provides you with
+                    endless plans and does whatever you want,
+                    <i> for a slight fee</i>.
+                  </p>
+                  <!-- <div class="btnContainerR">
+                          <button class="about-btn btn btn-default">Learn more</button>
+                      </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+      <div class="row aboutSection">
+        <div class="col-md-6 sectionSquareHalfContainer">
+          <div class="sectionSquareHalf">
+            <div></div>
+          </div>
+          <div class="sectionSquareHalf">
+            <div></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="sectionSquare" id="aboutSection2Text1">
+            <div class="aboutSectionTextContainer">
+              <h1 class="aboutSectionTitle">
+                Find PinPals across the Globe.
+              </h1>
+              <p class="aboutSectionP">
+                From site seeing in Milan, to navigating through concrete jungle
+                of NYC, make your trip an Experiance.<br /><br />Connect with
+                our tour guides from all over the wolrd, each providing a unque
+                adventure on your vacation.
+              </p>
+              <!-- <div class="btnContainerR">
+                  <button class="about-btn btn btn-default">Learn more</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
